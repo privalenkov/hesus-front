@@ -6,7 +6,8 @@ const tips = document.querySelector(".container__point-up")
 const tips1 = document.querySelector("#point-up-hesus")
 const tips2 = document.querySelector("#point-up-bratishkin")
 
-const socket = io()
+const hessocket = io('hesus.socket.cherryxh.live', {transports: ["polling"]});
+const brfsocket = io('bratishkin.socket.cherryxh.live', {transports: ["polling"]});
 let hesusClicks = 0
 let bratishkinClicks = 0
 let lastClick = 0
@@ -16,14 +17,9 @@ tips.addEventListener('animationend', function() {
     document.querySelector(".container__point-up__add-point").remove()
 })
 
-function UpdateClick(obj) {
-    hesusUpdateClick(obj)
-    bratishkinUpdateClick(obj)
-}
-
-function hesusUpdateClick(obj) {
-    hesusClicks = obj.hesusClicks
-    let normalized = 1 + obj.hesusClicks / 1000000
+function hesusUpdateClick(cc) {
+    hesusClicks = cc
+    let normalized = 1 + cc / 1000000
     btn1.style.transform = `scale(${normalized})`
     zIndex()
     document.querySelector('.count-hesus').textContent = hesusClicks
@@ -37,9 +33,9 @@ function zIndex () {
     }
 }
 
-function bratishkinUpdateClick(obj) {
-    bratishkinClicks = obj.bratishkinClicks
-    let normalized = 1 + obj.bratishkinClicks / 1000000
+function bratishkinUpdateClick(cc) {
+    bratishkinClicks = cc
+    let normalized = 1 + cc / 1000000
     btn2.style.transform = `scale(${normalized})`
     zIndex()
     document.querySelector('.count-bratishkin').textContent = bratishkinClicks
@@ -52,12 +48,12 @@ function UpdateUsers(count) {
 
 function hesusAddClick() {
     hesusUpdateClick(hesusClicks + 1)
-    socket.emit('click')
+    hessocket.emit('click')
 }
 
 function bratishkinAddClick() {
     bratishkinUpdateClick(bratishkinClicks + 1)
-    socket.emit('click')
+    brfsocket.emit('click')
 }
 
 function debounce(f, ms) {
@@ -78,8 +74,10 @@ const pauseClick = debounce(() => {
     audio.playbackRate = 1.0
 }, 1000)
 
-socket.on('connection', UpdateClick)
-socket.on('click', UpdateClick)
+hessocket.on('connection', hesusUpdateClick)
+hessocket.on('click', hesusUpdateClick)
+brfsocket.on('connection', bratishkinUpdateClick)
+brfsocket.on('click', bratishkinUpdateClick)
 socket.on('updateUserCount', UpdateUsers)
 
 function intervalClick() {
