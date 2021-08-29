@@ -6,8 +6,9 @@ const tips = document.querySelector(".container__point-up")
 const tips1 = document.querySelector("#point-up-hesus")
 const tips2 = document.querySelector("#point-up-bratishkin")
 
-const hessocket = io('hesus.socket.cherryxh.live', {transports: ["polling"]});
-const brfsocket = io('bratishkin.socket.cherryxh.live', {transports: ["polling"]});
+const hesSocket = io('hesus.socket.cherryxh.live', {transports: ["polling"]})
+const brfSocket = io('bratishkin.socket.cherryxh.live', {transports: ["polling"]})
+const userSocket = io()
 let hesusClicks = 0
 let bratishkinClicks = 0
 let lastClick = 0
@@ -47,13 +48,13 @@ function UpdateUsers(count) {
 }
 
 function hesusAddClick() {
-    hesusUpdateClick(hesusClicks + 1)
-    hessocket.emit('click')
+    hesusUpdateClick(+hesusClicks + 1)
+    hesSocket.emit('click')
 }
 
 function bratishkinAddClick() {
-    bratishkinUpdateClick(bratishkinClicks + 1)
-    brfsocket.emit('click')
+    bratishkinUpdateClick(+bratishkinClicks + 1)
+    brfSocket.emit('click')
 }
 
 function debounce(f, ms) {
@@ -74,11 +75,11 @@ const pauseClick = debounce(() => {
     audio.playbackRate = 1.0
 }, 1000)
 
-hessocket.on('connection', hesusUpdateClick)
-hessocket.on('click', hesusUpdateClick)
-brfsocket.on('connection', bratishkinUpdateClick)
-brfsocket.on('click', bratishkinUpdateClick)
-socket.on('updateUserCount', UpdateUsers)
+hesSocket.on('connection', hesusUpdateClick)
+hesSocket.on('click', hesusUpdateClick)
+brfSocket.on('connection', bratishkinUpdateClick)
+brfSocket.on('click', bratishkinUpdateClick)
+userSocket.on('updateUserCount', UpdateUsers)
 
 function intervalClick() {
     audio.play()
