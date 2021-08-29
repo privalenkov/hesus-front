@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TapTapHesus</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon16.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stylegift.css">
+</head>
+<body>
+    <audio id="audio">
+        <source src="source/music.mp3" type="audio/mpeg">
+    </audio>
+    <div id="cursor"><img id="hand-img" src="img/hand.png"></div>
+    <div class="container-panel">
+        <div class="container-panel__item container__counter">
+            <div class="container__counter__content">
+                <div id="hesus" class="container__counter__number count-hesus">...</div>
+                <div id="point-up-hesus" class="container__point-up"></div>
+                <img class="hand-white" src="img/hand_white.svg"> 
+                <img class="hand-dark" src="img/hand_black.svg"> 
+            </div>
+            <h2 class="container__counter__text">Раз погладили хесуса</h2>
+        </div>
+        <div class="container-panel__item container-panel__icons">
+            <div class="container-panel__wrapper">
+                <div class="links-content__donate" style="width: 90px;">
+                  <a href="https://vk.com/watashiwanoodle" target="_blank"><img src="img/vk_dev.svg"></a>
+                  <p>Модернизатор кода</p>
+                </div>
+                <div class="links-content__hesus">
+                    <a href="https://www.twitch.tv/jesusavgn" target="_blank"><img src="img/twitch_hesus.svg"></a>
+                    <p>Твич Хесуса</p>
+                </div>
+                <div class="links-content__dev">
+                    <a href="https://vk.com/privalenkovkirill" target="_blank"><img src="img/vk_dev.svg"></a>
+                    <p>Разработчик</p>
+                </div>
+            </div>
+            <h3 class="container__date">Дата запуска: 24.08.2021</h3>
+        </div>
+        <div class="container-panel__item container__counter">
+            <div class="container__counter__content">
+                <div id="bratishkin" class="container__counter__number count-bratishkin">...</div>
+                <div id="point-up-bratishkin" class="container__point-up"></div>
+                <img class="hand-white" src="img/hand_white.svg"> 
+                <img class="hand-dark" src="img/hand_black.svg"> 
+            </div>
+            <h2 class="container__counter__text">Раз погладили Братишкина</h2>
+        </div>
+    </div>
+    <div class="stat__users-online">Онлайн:</div>
+    <div class="stat__report">
+        <a href="https://vk.me/watashiwanoodle">Пожаловаться</a>
+    </div>
+    <div class="btn-wrapper">
+        <button class="btn-wrapper__btn btn-brff"><img src="img/bratishkin.png" width="40" height="40"></button>
+        <button class="btn-wrapper__btn btn-hesus"><img src="img/hesus.png" width="40" height="40"></button>
+    </div>
+    <div class="container">
+        <div id="container-hesus" class="treat-wrapper">
+            <div id="hesus" class="container__btn container__btn_hesus"></div>
+        </div>
+        <div id="container-bratishkin" class="treat-wrapper">
+            <div id="bratishkin" class="container__btn container__btn_bratishkin"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.1/socket.io.js" integrity="sha512-AcZyhRP/tbAEsXCCGlziPun5iFvcSUpEz2jKkx0blkYKbxU81F+iq8FURwPn1sYFeksJ+sDDrI5XujsqSobWdQ==" crossorigin="anonymous"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/hesusAudio.js"></script>
+    <script src="js/bratishkinAudio.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/particles.js"></script>
+</body>
+</html>
